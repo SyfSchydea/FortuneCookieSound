@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fortune Cookie sound
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Play a sound when a fortune cookie appears
 // @author       /u/SyfSchydea
 // @match        http://orteil.dashnet.org/cookieclicker/
@@ -36,6 +36,8 @@
 	}
 
 	onGameLoad(function() {
+		Game.Win("Third-party");
+		
 		// Listen for the game fetching a new ticker, then play a sound if it's a fortune
 		injectInto(Game, "getNewTicker", noop, function(manual) {
 			if (Game.TickerEffect && Game.TickerEffect.type == "fortune" && Game.chimeType > 0) {
